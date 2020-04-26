@@ -127,12 +127,15 @@ $types = [
 ];
 $countries_array = [];
 $global_array = [];
+$latest_array = [];
 
 foreach ($types as $type) {
     $type_url = str_replace('{{type}}', $type, $url_template);
     // TODO: curl get
     $csv = file_get_contents($type_url);
     $type_array = buildResult($csv);
+
+    $latest_array['latest'][$type] = 0;
 
     foreach ($type_array as $country_name => $country_data) {
         $country = [];
@@ -144,12 +147,25 @@ foreach ($types as $type) {
         }
 
         $country_id = $country['id'];
+
         $countries_array[$country_id]['latest'][$type] = $country_data['latest'];
         $countries_array[$country_id]['timelines'][$type] = $country_data['timeline'];
+
+        $latest_array['latest'][$type] += $country_data['latest'];
+
+        if (!isset($latest_array['countries'][$country_id])) {
+            $latest_array['countries'][$country_id] = [
+                'name' => $country_name,
+                'data' => [],
+            ];
+        }
+
+        $latest_array['countries'][$country_id]['data'][$type] = $country_data['latest'];
     }
 
     $global_array[$type] = $type_array;
 }
+
 
 // countries
 foreach ($countries_array as $country_id => $country_data) {
@@ -158,3 +174,6 @@ foreach ($countries_array as $country_id => $country_data) {
 
 // global
 file_put_contents($data_dir . '/global.json', json_encode($global_array));
+
+// latest
+file_put_contents($data_dir . '/latest.json', json_encode($latest_array));
