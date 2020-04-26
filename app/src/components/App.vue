@@ -112,7 +112,7 @@
           datasets: [],
         };
 
-        axios.get('https://zutix.ru/covid/country.php?id=' + id).then(res => {
+        axios.get('https://zutix.ru/covid/api/country/' + id).then(res => {
           const data = res.data;
           const timelines = data.timelines;
 
