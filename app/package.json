@@ -38,5 +38,9 @@
     "poi-preset-offline": "^9.0.0",
     "sass-loader": "^8.0.2",
     "serve": "^6.1.0"
+  },
+  "peerDependencies": {
+    "vue": "2.x",
+    "webpack": "^4.0.0"
   }
 }
