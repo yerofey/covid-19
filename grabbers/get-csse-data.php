@@ -116,8 +116,11 @@ function filterEmptyValues($var)
 
 
 $data_dir = __DIR__ . '/data';
+$countries_file = $data_dir . '/countries.json';
 
-$countries = json_decode(file_get_contents($data_dir . '/countries.json'), true);
+if (!is_file($countries_file)) {
+    exit('Error: data/countries.json file does not exists!' . PHP_EOL);
+}
 
 $url_template = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_{{type}}_global.csv';
 $types = [
@@ -125,6 +128,9 @@ $types = [
     'deaths',
     'recovered',
 ];
+
+$countries = json_decode(file_get_contents($countries_file), true);
+
 $countries_array = [];
 $global_array = [];
 $latest_array = [];
@@ -165,7 +171,6 @@ foreach ($types as $type) {
 
     $global_array[$type] = $type_array;
 }
-
 
 // countries
 foreach ($countries_array as $country_id => $country_data) {
