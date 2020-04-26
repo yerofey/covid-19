@@ -1,0 +1,42 @@
+{
+  "private": true,
+  "name": "covid-19-stats",
+  "productName": "covid-19-stats",
+  "description": "Simple Covid-19 Stats App",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "poi",
+    "build": "poi build",
+    "now-build": "poi build",
+    "report": "poi build --bundle-report",
+    "serve": "serve dist --single"
+  },
+  "author": {
+    "name": "yerofey",
+    "email": "pm@yerofey.dev"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "chart.js": "^2.9.3",
+    "lodash": "^4.17.15",
+    "must-have-css": "^1.0.1",
+    "normalize.css": "^7.0.0",
+    "object-assign": "^4.1.1",
+    "offline-plugin": "^4.8.0",
+    "promise-polyfill": "^6.0.2",
+    "vue-chartjs": "^3.5.0",
+    "vue-select": "^3.10.1",
+    "vue-simple-spinner": "^1.2.10"
+  },
+  "devDependencies": {
+    "less": "^3.11.1",
+    "less-loader": "^5.0.0",
+    "node-sass": "^4.14.0",
+    "poi": "^9.0.0",
+    "poi-preset-bundle-report": "^2.0.0",
+    "poi-preset-offline": "^9.0.0",
+    "sass-loader": "^8.0.2",
+    "serve": "^6.1.0"
+  }
+}
