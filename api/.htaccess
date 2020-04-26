@@ -1,0 +1,17 @@
+AddDefaultCharset utf-8
+
+Options +FollowSymLinks
+Options -Indexes
+RewriteEngine On
+# RewriteBase /
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteCond %{THE_REQUEST} ^.*/index\.php
+RewriteRule ^(.*)index.php$ /$1 [R=301,L]
+
+
+RewriteRule ^country/([0-9]+)$ index.php?method=country&id=$1 [L]
+RewriteRule ^global$ index.php?method=global [L]
+RewriteRule ^latest$ index.php?method=latest [L]
